@@ -130,7 +130,7 @@ class Gleez_Core {
 		// Check for existence of the APC extension
 		if ( ! extension_loaded('apc'))
 		{
-			Kohana::$log->add(LOG::ERROR, 'PHP APC extension is not available');
+			Kohana::$log->add(LOG::INFO, 'PHP APC extension is not available');
 			return FALSE;
 		}
 
@@ -325,7 +325,7 @@ class Gleez_Core {
 		$locale = Cookie::get('locale');
 
 		// If cookies are empty read accept_language
-		if (empty($locale))
+		if (empty($locale) AND isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 		{
 			$locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 		}
